@@ -1,0 +1,3 @@
+Update log
+1 - Refactored loop.js
+	1.b a to go left in the tab list, d to go right.

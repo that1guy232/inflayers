@@ -1,7 +1,7 @@
 var app = new Vue({
   el: "#app",
   data: {
-    player: player
+    player: player,
   },
   methods: {
     prestige(i) {
@@ -11,8 +11,11 @@ var app = new Vue({
       if (player.generators.length === i + 1) {
         initializeTier();
       }
-      player.generators[i + 1].prestigeAmount = player.generators[i + 1].prestigeAmount.plus(
-        getPrestigeGain(player.generators[i].prestigeAmount));
+      player.generators[i + 1].prestigeAmount = player.generators[
+        i + 1
+      ].prestigeAmount.plus(
+        getPrestigeGain(player.generators[i].prestigeAmount)
+      );
       for (let k = 0; k <= i; k++) {
         resetTier(k);
       }
@@ -30,16 +33,13 @@ var app = new Vue({
     maxAll(i) {
       maxAll(i);
     },
-    transcendGame()
-    {
+    transcendGame() {
       transcend();
     },
-    getTranscensionGain()
-    {
+    getTranscensionGain() {
       return getTranscensionGain();
     },
-    getTranscensionBoost()
-    {
+    getTranscensionBoost() {
       return getTranscensionBoost();
     },
     format(x) {
@@ -48,8 +48,7 @@ var app = new Vue({
     formatLong(x) {
       return formatLong(x);
     },
-    formatWhole: function(x)
-    {
+    formatWhole: function (x) {
       return formatWhole(x);
     },
     getMult(i, j) {
@@ -71,28 +70,24 @@ var app = new Vue({
     toggleDisplay(i) {
       player.generators[i].display = !player.generators[i].display;
     },
-    keyPressed(k){
+    keyPressed(k) {
       return player.pressedKeys.includes(k);
-    }
-  }
+    },
+  },
 });
 
-document.onkeydown = function(e)
-{
+document.onkeydown = function (e) {
   let key = String.fromCharCode(e.which).toLowerCase();
 
-  if(!player.pressedKeys.includes(key))
-  {
+  if (!player.pressedKeys.includes(key)) {
     player.pressedKeys.push(key);
   }
-}
+};
 
-document.onkeyup = function(e)
-{
+document.onkeyup = function (e) {
   let key = String.fromCharCode(e.which).toLowerCase();
 
-  if(player.pressedKeys.includes(key))
-  {
-    player.pressedKeys = player.pressedKeys.filter(val => val !== key);
+  if (player.pressedKeys.includes(key)) {
+    player.pressedKeys = player.pressedKeys.filter((val) => val !== key);
   }
-}
+};

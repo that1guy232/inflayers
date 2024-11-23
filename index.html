@@ -30,14 +30,13 @@
 <body>
   <div id="app">
     <div>
-      <span><button onclick="saveGame()">Save</button> <button onclick="loadGame(prompt('Enter your save:'))">Load</button> <button onclick="exportGame()">Export</button> <button onclick="nextTheme()">Current theme: {{ player.currentTheme }}</button></span>
+      <div>
+        <span class ="settingbuttons"><button onclick="saveGame()">Save</button> <button onclick="loadGame(prompt('Enter your save:'))">Load</button> <button onclick="exportGame()">Export</button> <button onclick="nextTheme()">Current theme: {{ player.currentTheme }}</button></span>
+      </div>
+      
+      <button class="transcensiontab" v-if="getTranscensionGain().gte(1) || player.transcension.points.gte(1)" v-on:click="player.tab = 'Transcension'">TRANSCENSION</button>
     </div>
-    <h3>Notice: This is not my Game (only modified). The <a href="https://dan-simon.github.io/misc/b2/">Original Game</a> by Dan-Simon can be played here.</h3>
-    <div v-if="player.generators.length > 3">
-      <div>Display <input v-model.number="player.lowTiers"></input> lowest dimensions.</div>
-      <div>Display <input v-model.number="player.highTiers"></input> highest dimensions.</div>
-    </div>
-    <button class="transcensiontab" v-if="getTranscensionGain().gte(1) || player.transcension.points.gte(1)" v-on:click="player.tab = 'Transcension'">TRANSCENSION</button>
+
     <div>
       <button class="generatortab" :style="{filter: 'hue-rotate(' + generator.tabColor + 'deg) saturate(' + (1 + 0.5 * i) + ')'}" v-for="(generator, i) in player.generators" v-on:click="player.tab = i">{{player.generators[i].displayName}}</button>
     </div>
@@ -74,6 +73,11 @@
       
   </div>
 
+  <div v-if="player.generators.length > 3">
+    <div>Display <input v-model.number="player.lowTiers"></input> lowest dimensions.</div>
+    <div>Display <input v-model.number="player.highTiers"></input> highest dimensions.</div>
+  </div>
+
   <div v-if="player.tab === 'Transcension'">
     <div class="currency transcension" style="text-align: center" >
       <p>You have {{formatWhole(player.transcension.points)}} Transcension Points, 
@@ -82,7 +86,8 @@
       <button class="transcension" v-on:click="transcendGame">Transcend now to get {{formatWhole(getTranscensionGain())}} Transcendence Points</button>
     </div>
   </div>
-
+  
+<h5 v-if="player.tab == 0">Notice: This is not my Game (only modified). The <a href="https://dan-simon.github.io/misc/b2/">Original Game</a> by Dan-Simon can be played here.</h5>
 </div>
   <div style="display: none;"><textarea id="exportOutput"></textarea></div>
 </body>
@@ -94,6 +99,7 @@
 <script src="js/saving.js"></script>
 <script src="js/transcension.js"></script>
 <script src="js/style.js"></script>
+
 <script src="js/loop.js"></script>
 <script src="js/index.js"></script>
 </html>

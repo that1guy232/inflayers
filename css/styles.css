@@ -1,24 +1,7 @@
 * {
   box-sizing: border-box;
   outline: 0;
-  margin: 0;
-}
-
-button{
-  outline: 0;
-}
-
-h4{
-  margin: 6px;
-}
-
-#app {
-  margin: auto;
-}
-
-.column {
-  float: left;
-  width: 100%;
+  margin: 1;
 }
 
 .currency {
@@ -34,8 +17,6 @@ h4{
 }
 
 .prestige {
-  margin-left: 50px;
-  margin-top: 10px;
   border: 1px solid black;
   text-align: center;
   padding: 10px;
@@ -43,53 +24,39 @@ h4{
 }
 
 .generatortab{
-  margin: 14px;
+  margin-left: 10px;
   font-size: 1.5em;
   border-width: 4px;
 }
 
-.generators-container {
-  display: flex;
-  flex-direction: column;
-}
 
-.generator {
-  border: 1px solid black;
-  width: 100%;
-  height: 3em;
-  text-align: center;
-}
 
 .generator button.buy{
-  height: 1.3em;
   font-size: 0.9em;
-  padding-left: 0.3em;
-  padding-right: 0.3em;
 }
 
 button.transcensiontab {
   border: 4px solid white;
-  background: black;
-  color: white;
   box-shadow: inset 0 0 6px 2px white;
   padding: 3%;
+  padding: 12px 24px;
+  margin: 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-button.transcension {
-  background: white;
-  border: none;
-  box-shadow: inset 0 0 10px 3px black;
-  text-shadow: 1px 1px 2px black;
-  padding: 8px;
+.transcensiontab:hover {
+  transform: scale(1.05);
+  filter: brightness(1);
 }
-
-button.transcension:hover{
-  filter: brightness(3);
-}
-
 .currency.transcension{
   text-align: center;
   background: black;
   color: white;
   text-shadow: 0 0 5px white, 0 0 10px white, 0 0 26px white;
+}
+
+.settingbuttons{
+  margin: 8px;
 }
