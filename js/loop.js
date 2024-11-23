@@ -1,6 +1,29 @@
-function gameLoop () {
-  let now = Date.now();
-  let diff = (now - player.lastUpdate) / 1000;
+// Constants
+const SAVE_INTERVAL = 10000; // 10 seconds
+const MILLISECONDS_TO_SECONDS = 1000;
+
+const TAB_CHANGE_COOLDOWN = 0.25;
+let TAB_CHANGE_CUR_TIME = 0;
+
+// Core game loop handling all mechanics
+function gameLoop() {
+  const now = Date.now();
+  const deltaTime = calculateDeltaTime(now);
+
+  updateSingularity(deltaTime);
+  processGenerators(deltaTime);
+  handleKeyboardInput(deltaTime);
+
+  player.lastUpdate = now;
+  requestAnimationFrame(gameLoop);
+}
+
+function calculateDeltaTime(now) {
+  return (now - player.lastUpdate) / MILLISECONDS_TO_SECONDS;
+}
+
+function updateSingularity(deltaTime) {
+  // Check unlock condition
   if (player.generators[0].prestigeAmount.exponent >= singularityUnlockExp) {
     player.singularity.unlocked = true;
   }
